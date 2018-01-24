@@ -1,0 +1,111 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name='viewport' content="width=device-width,initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Add Computer</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+	
+</head>
+<body class="body">
+	<!-- This is the header -->
+	<header class="mainHeader">
+		<a href="{% url 'home' %}"><img src="{% static 'images/legendlogo.jpeg' %}" /></a>
+		<nav>
+			<ul>
+				<li><button id="addComputerBtn" class="button">Add Computer</button></li>
+				<li id="input1"><input type='text' id="myinput" placeholder='Search'/></li>
+                <li id="search1"><button type='submit' onclick="myFunction()">Search</button></li>
+			</ul>
+		</nav>
+	</header>
+
+
+
+
+	<!--POPUP window  -->
+	<div id='simpleModal' class='modal'>
+		<div class='modal-content'>
+			<div class='modal-header'>
+				<span class='closeBtn'>&times;</span>
+				<h2>Add Computer Form</h2>
+			</div>
+			<div class='modal-body'>
+				<form id='submitForm' method="post" action="">
+					{% csrf_token  %}
+					
+					<ul>
+						<li><select name='Type' id="typelist">
+								<option value='laptop'>Laptop</option>
+								<option value='workstation'>Workstation</option>
+								<option value='server'>Server</option>
+							</select>
+						</li>
+						<li><input type="text" id='Make' name="Make" placeholder="Dell" style="width:40%" /></li>
+						<li><input type="text" id='Modelnumber' name="Modelnumber" placeholder="Model Number" style="width:40%" /></li>
+						<li><input type="text" id='Barcode' name="Barcode" placeholder="Barcode" style="width:40%" /></li>
+						<li><input type="text" id='SerialNo' name="SerialNo" placeholder="Serial Number" style="width:40%" /></li>
+						<li><input type="text" id='ServiceNo' name="ServiceNo" placeholder="Service Number" style="width:40%" /></li>
+						<li><input type="text" id='Warranty' name="Warranty" placeholder="Warranty" style="width:40%" /></li>
+						<li><input type="text" id='EndofLife' name="EndofLife" placeholder="End of Life" style="width:40%" /></li>
+						<li><input type="text" id='WorkstationName' name="WorkstationName" placeholder="WorkstationName" style="width:40%" /></li>
+						<li><select name='Domain' id='Domain'>
+								<option value='corp'>Corp</option>
+								<option value='prod'>Prod</option>
+							</select>
+						</li>
+						<li><select name='Assetownedby' id='Assetownedby'>
+								<option value='legend'>Legend</option>
+								<option value='rental'>Rental</option>
+							</select>
+						</li>
+						<li>
+							<input style="width:40%" type="date" name="Purchasedate" id='Purchasedate' title='Purchase Date'/>
+						</li>
+
+						<li><input style="width:40%" type="date" name="Acquisitiondate" id='Acquisitiondate' title='Acquisition Date'/></li>
+						<li><input style="width:40%" type="date" name="Returndate" id='Returndate' title='Return Date' /></li>
+						<li><input type="text" name="Invoicenumber" id='Invoicenumber' placeholder="Invoice Number" style="width:40%" /></li>
+						<li><select name='Status' id='Status'>
+								<option value='active'>Active</option>
+								<option value='inactive'>Inactive</option>
+								<option value='decommissioned'>Decommissioned</option>
+								<option value='return'>Return</option>
+							</select>
+						</li>
+						<li><input type="text" name="Location" id='Location' placeholder="Location" style="width:40%" /></li>
+						<li><input type="text" name="Desknumber" id='Desknumber' placeholder="Desk Number" style="width:40%" /></li>
+						<li><input type="text" name="CPU" id='CPU' placeholder="CPU" style="width:40%" /></li>
+
+						<li><input type="text" id='Ram' name="Ram" placeholder="RAM" style="width:40%" /></li>
+						<li><input type="text" name="ExternalStorage" id='ExternalStorage' placeholder="1 TB" style="width:40%" /></li>
+						<li><input type="text" name="GPU" id='GPU' placeholder="GPU" style="width:40%" /></li>
+						<li><input type="text" name="OS" id='OS' placeholder="OS" style="width:40%" /></li>
+					</ul>
+					<input  type='submit' style="margin-left:130px !important; width: 140px !important; background:green; padding:1em 2em; color:#fff;border:0;" value='SUBMIT' />
+				</form>
+			</div>
+			<div class='modal-footer'>
+				<h3>Modal Footer</h3>
+			</div>
+			
+			
+		</div>
+	</div>
+
+
+
+	{% for comp in post1 %}
+	{{ comp.Type }}
+	{% endfor %}
+
+	
+	<script src='{% static "javascript/jquery.min.js" %}'></script>
+
+	<script src='{% static "javascript/main.js" %}'></script>
+	
+	
+</body>
+</html>
